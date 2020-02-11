@@ -1,0 +1,87 @@
+<div class="container">
+  <button *ngIf="!isTaskCreate && !isTaskAssign && role" (click)="showAddTask()">create new task</button>
+  
+  <button *ngIf="!isTaskCreate && !isTaskAssign && role" (click)="showAssignTask()">assigm task</button>
+  
+  <div class="col-md-6">
+    <h2>Project Tasks</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>to do</th>
+          <th>in process</th>
+          <th>complete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <ng-container *ngFor="let task of tasks">
+              <div class="card " style="max-width: 18rem;" *ngIf="task.status=='to_do'">
+                <div class="card-header {{taskService.getPriority(task.priority)}}">{{"0"+projectId}}{{" 0"+task.backlogId}}{{" 0"+task.taskId}}</div>
+                <div class="card-body">
+                  <h5 class="card-title">{{task.title}}</h5>
+                  <button *ngIf="viewTask.taskId!=task.taskId" class="btn" (click)="showViewTask(task)">view  </button>
+                  <button *ngIf="updateTask.taskId!=task.taskId" class="btn btn-success" (click)="showUpdateTask(task)">update  </button>
+                  <button *ngIf="updateTask.taskId!=task.taskId && role" class="btn btn-danger" (click)="deleteTask(task)">delete</button>
+                  <!--<app-view-task *ngIf="viewTask.taskId==task.taskId" (cancelView)="cancelViewTask()" [users]="users" [task]="viewTask"> </app-view-task>
+                  <app-update-task *ngIf="updateTask.taskId==task.taskId" (cancelUpdate)="cancelUpdateTask()" [users]="users" [task]="updateTask"
+                    (taskUpdated)="getTasks()"></app-update-task>-->
+                </div>
+                <!--<div class="card" style="width: 18rem;" *ngIf="task.status=='to_do'">
+                <header class={{taskService.getPriority(task.priority)}}>{{task.priority}}</header>
+                <div class="card-body">
+                  <h4>{{task.title}}</h4>
+                  <button class="btn btn-alert">update</button>
+                </div>-->
+
+              </div>
+
+            </ng-container>
+          </td>
+          <td>
+            <ng-container *ngFor="let task of tasks">
+              <div class="card" style="width: 18rem;" *ngIf="task.status=='in_process'">
+                <div class="card-header {{taskService.getPriority(task.priority)}}">{{"0"+projectId}}{{" 0"+task.backlogId}}{{" 0"+task.taskId}}</div>
+                <div class="card-body">
+                  <h4>{{task.title}}</h4>
+                  <button *ngIf="viewTask.taskId!=task.taskId" class="btn" (click)="showViewTask(task)">view  </button>
+                  <button *ngIf="updateTask.taskId!=task.taskId" class="btn btn-success" (click)="showUpdateTask(task)">update  </button>
+                  <button *ngIf="updateTask.taskId!=task.taskId && role" class="btn btn-danger" (click)="deleteTask(task)">delete</button>
+                  <!--<app-view-task *ngIf="viewTask.taskId==task.taskId" (cancelView)="cancelViewTask()" [users]="users" [task]="task"> </app-view-task>
+                  <app-update-task *ngIf="updateTask.taskId==task.taskId" (cancelUpdate)="cancelUpdateTask()" [users]="users" [task]="task"
+                    (taskUpdated)="getTasks()"></app-update-task>-->
+                </div>
+
+              </div>
+
+            </ng-container>
+          </td>
+          <td>
+            <ng-container *ngFor="let task of tasks">
+              <div class="card" style="width: 18rem;" *ngIf="task.status=='complete'">
+                <div class="card-header {{taskService.getPriority(task.priority)}}">{{"0"+projectId}}{{" 0"+task.backlogId}}{{" 0"+task.taskId}}</div>
+                <div class="card-body">
+                  <h4>{{task.title}}</h4>
+                  <button *ngIf="viewTask.taskId!=task.taskId" class="btn" (click)="showViewTask(task)">view  </button>
+                  <button *ngIf="updateTask.taskId!=task.taskId" class="btn btn-success" (click)="showUpdateTask(task)">update  </button>
+                  <button *ngIf="updateTask.taskId!=task.taskId && role" class="btn btn-danger" (click)="deleteTask(task)">delete</button>
+                  <!--<app-view-task *ngIf="viewTask.taskId==task.taskId" (cancelView)="cancelViewTask()" [users]="users" [task]="task"> </app-view-task>
+                  <app-update-task *ngIf="updateTask.taskId==task.taskId" (cancelUpdate)="cancelUpdateTask()" [users]="users" [task]="task"
+                    (taskUpdated)="getTasks()"></app-update-task>-->
+                </div>
+              </div>
+            </ng-container>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-md-6">
+    <app-add-task *ngIf="isTaskCreate" (cancelAdd)="cancelAddTask()" [projectId]="projectId" (taskAdded)="getTasks()"></app-add-task>
+    <app-assign-task *ngIf="isTaskAssign" (cancelAssign)="cancelAssignTask()" [projectId]="projectId" (taskAssigned)="getTasks()"></app-assign-task>
+    <app-view-task *ngIf="viewTask.taskId" (cancelView)="cancelViewTask()" [users]="users" [task]="viewTask"> </app-view-task>
+    <app-update-task *ngIf="updateTask.taskId" (cancelUpdate)="cancelUpdateTask()" [users]="users" [task]="updateTask"
+                    (taskUpdated)="getTasks()"></app-update-task>
+  </div>  
+</div>

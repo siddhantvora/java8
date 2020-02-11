@@ -1,0 +1,38 @@
+<p>user works!</p>
+
+     <div class="container">
+        <h2>Users</h2>
+        <!--<p>The .table-striped class adds zebra-stripes to a table:</p>            -->
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>user id</th>
+        <th>user name</th>
+        <th>option</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{user.userId}}</td>
+        <td>{{user.userName}}</td>
+        <td><button (click)="onDetail(user.userId)">Details</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

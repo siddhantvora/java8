@@ -1,0 +1,61 @@
+
+     <div class="container">
+        <h2>Projects</h2>
+        <!--<p>The .table-striped class adds zebra-stripes to a table:</p>            -->
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>projectid</th>
+        <th>project name</th>
+        <th>option</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let project of projects">
+        <td>{{project.projectId}}</td>
+        <td>{{project.projectName}}</td>
+        <td><button (click)="onDetail(project.projectId)">Details</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div *ngIf="addflag && !role" class="col-xs-12">
+    <button class="btn btn-success" type="submit" (click)="toggle()">add  Project</button>
+</div>
+
+    <ng-container *ngIf="!addflag">  
+        <label for="managerId">managerId</label>
+        <input type="text" id="newProject.managerId" [(ngModel)]="newProject.managerId">
+        <label for="projectId">projectId</label>
+        <input type="text" id="newProject.projectId" [(ngModel)]="newProject.projectId">
+        <label for="projectName">projectName</label>
+        <input type="text" id="newProject.projectName"[(ngModel)]="newProject.projectName">
+        <label for="teamMember">teamMember</label>
+        <input type="text" id="newProject.teamMember"  [(ngModel)]="newProject.teamMember">
+        <label for="scrumMaster">scrumMaster</label>
+        <input type="text" id="newProject.scrumMaster" [(ngModel)]="newProject.scrumMaster">
+        <label for="status">status</label>
+        <input type="text" id="newProject.status"  [(ngModel)]="newProject.status">
+        
+        <div class="col-xs-12">
+            <button class="btn btn-success" type="submit" (click)="addProject()">add</button>
+            <button class="btn btn-danger" type="submit" (click)="toggle()">cancle</button>
+        </div>
+    </ng-container>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

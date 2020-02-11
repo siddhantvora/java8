@@ -1,0 +1,42 @@
+<div class="container">
+    <label for="backlogId">backlogId</label>
+    <select id="newTask.backlogId" [(ngModel)]="newTask.backlogId">
+            <option *ngFor="let backlog of backlogs" value="{{backlog.backlogId}}" >{{backlog.title}}</option>
+    </select>
+
+    <label for="taskId">taskId</label>
+    <input type="text" id="newTask.taskId" [(ngModel)]="newTask.taskId">
+    
+    <!--<input type="text" id="newTask.title" [(ngModel)]="newTask.title">-->
+
+    <ng-container *ngFor="let backlog of backlogs">
+        <label *ngIf="backlog.backlogId==newTask.backlogId" for="title">title</label>
+        <select *ngIf="backlog.backlogId==newTask.backlogId" id="newTask.title" [(ngModel)]="newTask.title">
+                    <option *ngFor="let r of backlog.requirement" value="{{r}}" >{{r}}</option>
+        </select>
+    </ng-container>
+
+    <label for="desc">desc</label>
+    <input type="text" id="newTask.desc" [(ngModel)]="newTask.desc">
+    <label for="startDate">startDate</label>
+    <input type="date" id="newTask.startDate" [(ngModel)]="newTask.startDate">
+    <label for="endDate">endDate</label>
+    <input type="date" id="newTask.endDate" [(ngModel)]="newTask.endDate">
+    <label for="priority">priority</label>
+    <select id="newTask.priority" [(ngModel)]="newTask.priority">
+            <option  value="1">high</option>
+            <option  value="2">medium</option>
+            <option  value="3">low</option>
+        </select>
+    <label for="status">status</label>
+
+    <select id="newTask.status" [(ngModel)]="newTask.status">
+            <option  value="to_do">to_do</option>
+            <option  value="in_process">in_process</option>
+            <option  value="complete">complete</option>
+        </select>
+    <div class="col-xs-12">
+        <button class="btn btn-success" type="submit" (click)="addTask()">add</button>
+        <button class="btn btn-danger" type="submit" (click)="cancel()">cancle</button>
+    </div>
+</div>

@@ -1,0 +1,42 @@
+<div class="container">
+    <h2>Project Details</h2>
+    <!--<p>The .table-striped class adds zebra-stripes to a table:</p>            -->
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>managerId</th>
+                <th>projectid</th>
+                <th>project name</th>
+                <th>team member</th>
+                <th> scrumMaster</th>
+                <th>status</th>
+                <th *ngIf="role">option</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="text" [disabled]="true" id="project.managerId" [(ngModel)]="project.managerId"></td>
+                <td><input type="text" [disabled]="true" id="project.projectId" [(ngModel)]="project.projectId"></td>
+                <td><input type="text" [disabled]="!flag" id="project.projectName" [(ngModel)]="project.projectName"></td>
+                <td><input type="text" [disabled]="!flag" id="project.teamMember" [(ngModel)]="project.teamMember"></td>
+                <td><input type="text" [disabled]="!flag" id="project.scrumMaster" [(ngModel)]="project.scrumMaster"></td>
+                <td><input type="text" [disabled]="!flag" id="project.status" [(ngModel)]="project.status">
+                    <td *ngIf="role">
+                        <div class="col-xs-12" *ngIf="flag">
+                            <button class="btn btn-success" (click)="updateProject()">Update</button>
+                        </div>
+                        <div class="col-xs-12" *ngIf="flag">
+                            <button class="btn btn-success" (click)="cancelUpdateProject()">Cancle</button>
+                        </div>
+                        <div class="col-xs-12" *ngIf="!flag">
+                            <button class="btn btn-success" (click)="editProject()">Edit</button>
+                        </div>
+                        <div class="col-xs-12">
+                            <button class="btn btn-danger" (click)="deleteProject()">delete</button>
+                        </div>
+                    </td>
+            </tr>
+        </tbody>
+    </table>
+    <app-task [projectId]="projectId"></app-task>
+</div>

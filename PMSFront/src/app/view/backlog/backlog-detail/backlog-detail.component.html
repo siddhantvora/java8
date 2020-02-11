@@ -1,0 +1,51 @@
+<p>backlog-detail works!</p>
+<div class="container">
+    <h2>backlog Details</h2>
+    <!--<p>The .table-striped class adds zebra-stripes to a table:</p>            -->
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>projectId</th>
+                <th>backlogId</th>
+                <th>title</th>
+                <th>requirement</th>
+                <th> created_at</th>
+                <th>updated_at</th>
+                <th *ngIf="role">option</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="text" [disabled]="true" id="backlog.projectId" [(ngModel)]="backlog.projectId"></td>
+                <td><input type="text" [disabled]="true" id="backlog.backlogId" [(ngModel)]="backlog.backlogId"></td>
+                <td><input type="text" [disabled]="!flag" id="backlog.title" [(ngModel)]="backlog.title"></td>
+                <!--<td><input type="text" [disabled]="!flag" id="backlog.requirement" [(ngModel)]="backlog.requirement"></td>-->
+                <td>
+                        <select [disabled]="true" [multiple]="true" id="backlog.requirement" [(ngModel)]="backlog.requirement">
+                            <option *ngFor="let r of backlog.requirement" value="{{r}}" >{{r}}</option>
+                        </select>
+                </td>
+                <td><input type="text" [disabled]="!flag" id="backlog.created_at" [(ngModel)]="backlog.created_at"></td>
+                <td><input type="text" [disabled]="!flag" id="backlog.updated_at" [(ngModel)]="backlog.updated_at">
+                    <td *ngIf="role">
+                        <div class="col-xs-12" *ngIf="flag">
+                            <button class="btn btn-success" (click)="updateBacklog()">Update</button>
+                        </div>
+                        <div class="col-xs-12" *ngIf="!flag">
+                            <button class="btn btn-success" (click)="addRequirement()">addRequirement</button>
+                        </div>
+                        <div class="col-xs-12" *ngIf="flag">
+                            <button class="btn btn-success" (click)="cancelUpdateBacklog()">Cancle</button>
+                        </div>
+                        <div class="col-xs-12" *ngIf="!flag">
+                            <button class="btn btn-success" (click)="editBacklog()">Edit</button>
+                        </div>
+                        <div class="col-xs-12">
+                            <button class="btn btn-danger" (click)="deleteBacklog()">delete</button>
+                        </div>
+                    </td>
+            </tr>
+        </tbody>
+    </table>
+    <app-add-requirement *ngIf="isAddRequirement" [backlogId]="backlogId" (addedRequirement)="getBacklogDetails()" (cancelAddRequirement)="cancelAddRequirement()"></app-add-requirement>
+</div>

@@ -1,0 +1,50 @@
+<p>backlog works!</p>
+
+
+<div class="container">
+    <h2>backlogs</h2>
+    <!--<p>The .table-striped class adds zebra-stripes to a table:</p>            -->
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>projectId</th>
+                <th>backlogId</th>
+                <th>backlog name</th>
+                <th>option</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let backlog of backlogs">
+                <td>{{backlog.projectId}}</td>
+                <td>{{backlog.backlogId}}</td>
+                <td>{{backlog.title}}</td>
+                <td><button (click)="onDetail(backlog.backlogId)">Details</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div *ngIf="addflag && !role" class="col-xs-12">
+    <button class="btn btn-success" type="submit" (click)="toggle()">add  backlog</button>
+</div>
+
+<ng-container *ngIf="!addflag">
+    <label for="projectId">projectId</label>
+    <select id="newBacklog.projectId" [(ngModel)]="newBacklog.projectId">
+            <option *ngFor="let project of projects" value="{{project.projectId}}" >{{project.projectName}}</option>
+    </select>
+    <label for="backlogId">backlogId</label>
+    <input type="text" id="newBacklog.backlogId" [(ngModel)]="newBacklog.backlogId">
+    <label for="title">title</label>
+    <input type="text" id="newBacklog.title" [(ngModel)]="newBacklog.title">
+    <label for="requirement">requirement</label>
+    <input type="text" id="newBacklog.requirement" [(ngModel)]="newBacklog.requirement">
+    <label for="created_at">created_at</label>
+    <input type="date" id="newBacklog.created_at" [(ngModel)]="newBacklog.created_at">
+    <label for="updated_at">updated_at</label>
+    <input type="date" id="newBacklog.updated_at" [(ngModel)]="newBacklog.updated_at">
+
+    <div class="col-xs-12">
+        <button class="btn btn-success" type="submit" (click)="addBacklog()">add</button>
+        <button class="btn btn-danger" type="submit" (click)="toggle()">cancle</button>
+    </div>
+</ng-container>

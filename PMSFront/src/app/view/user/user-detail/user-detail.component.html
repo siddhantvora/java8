@@ -1,0 +1,49 @@
+
+
+<div class="container">
+    <h2>user Details</h2>
+    <!--<p>The .table-striped class adds zebra-stripes to a table:</p>            -->
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>userid</th>
+                <th>username</th>
+                <th>email</th>
+                <th>phone</th>
+                <th>login name</th>
+                <th>role</th>
+                <th>status</th>
+                <th *ngIf="role">option</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+
+
+
+                <td><input type="text" [disabled]="true" id="user.userId" [(ngModel)]="user.userId"></td>
+
+                <td><input type="text" [disabled]="!flag" id="user.userName" [(ngModel)]="user.userName"></td>
+
+                <td><input type="text" [disabled]="!flag" id="user.email" [(ngModel)]="user.email"></td>
+
+                <td><input type="text" [disabled]="!flag" id="user.phone" [(ngModel)]="user.phone"></td>
+                <td><input type="text" [disabled]="!flag" id="user.loginName" [(ngModel)]="user.loginName"></td>
+                <td><input type="text" [disabled]="!flag" id="user.role" [(ngModel)]="user.role"></td>
+                <td><input type="text" [disabled]="!flag" id="user.status" [(ngModel)]="user.status"></td>
+                    <td *ngIf="role">
+
+                        <div class="col-xs-12" *ngIf="flag">
+                            <button class="btn btn-success" (click)="updateUser()">Update</button>
+                        </div>
+                        <div class="col-xs-12" *ngIf="flag">
+                            <button class="btn btn-success" (click)="cancelUpdateUser()">Cancle</button>
+                        </div>
+                        <div class="col-xs-12" *ngIf="!flag">
+                            <button class="btn btn-success" (click)="editUser()">Edit</button>
+                        </div>
+                    </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

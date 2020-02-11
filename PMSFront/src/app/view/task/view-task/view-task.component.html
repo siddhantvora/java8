@@ -1,0 +1,43 @@
+<div class="container">
+    <h2>Task detail</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>taskid</th>
+                <th>title</th>
+                <th>desc</th>
+                <th *ngIf="loginService.getRole()">assigned to</th>
+                <th>start date</th>
+                <th>end date</th>
+                <th>priority</th>
+                <th>status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{task.taskId}}</td>
+                <td>{{task.title}}</td>
+                <td>{{task.desc}}</td>
+                <td *ngIf="loginService.getRole()">
+                    <ng-container *ngIf="task.userId">
+                        <ng-container *ngFor="let user of users">
+                            <h4 *ngIf="task.userId==user.userId">{{user.userName}}</h4>
+
+                        </ng-container>
+                    </ng-container>
+                    <ng-container *ngIf="!task.userId">
+                        <h4>yet to assign</h4>
+                        </ng-container>
+
+
+                </td>
+
+                <td>{{task.startDate}}</td>
+                <td>{{task.endDate}}</td>
+                <td>{{task.priority}}</td>
+                <td>{{task.status}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <button class="btn btn-danger" type="submit" (click)="cancel()">cancle</button>
+</div>

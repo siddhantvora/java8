@@ -1,0 +1,39 @@
+
+<div class="container">
+    <h4>Login Form</h4>
+    <form [formGroup]="user">
+    <div class="row" >
+        <label for="loginName">loginName</label>
+        <input type="text" id="user.loginName" formControlName="loginName" class="form-control" >
+        <div *ngIf="isLogged && f().loginName.invalid" class="alert alert-danger">
+
+            <div *ngIf="f().loginName.errors.required">
+                Name is required.
+            </div>
+            <div *ngIf="f().loginName.errors.minlength">
+                Name must be at least 6 characters long.
+            </div>
+            <!--<div *ngIf="name.errors.forbiddenName">
+            Name cannot be Bob.
+        </div>-->
+
+        </div>
+    </div>
+    <div class="row">
+        <label for="password">password</label>
+        <input type="text" formControlName="password" class="form-control" id="user.password" >
+        <div *ngIf="isLogged && f().password.invalid" class="alert alert-danger">
+
+            <div *ngIf="f().password.errors.required">
+                    password is required.
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12">
+        <button class="btn btn-success" type="submit"  (click)="login()">login</button>
+        <button class="btn btn-danger" type="submit" (click)="cancle()">cancle</button>
+        <button class="btn btn-alert" type="submit" (click)="regesterHere()">register here</button>
+    </div>
+    </form>
+
+</div>

@@ -1,0 +1,22 @@
+.high{
+    background-color:red
+}
+.medium{
+    background-color:blue
+}
+.low{
+    background-color:chartreuse
+}
+.box{
+     width: 300px;
+  height: 100px;
+  border: 1px solid black;
+}
+div {
+    padding: 10px;
+    border: 1 border-style cornflowerblue;
+
+}
+table{
+    border: 2 border-style color burlywood;
+}

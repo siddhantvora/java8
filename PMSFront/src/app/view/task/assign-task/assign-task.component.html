@@ -1,0 +1,19 @@
+<div>
+    <label for="taskId">Task</label>   
+    <select id="task" [(ngModel)]="task">
+            <ng-container  *ngFor="let t of tasks">
+            <option *ngIf="!t.userId"  value="{{t.taskId}}">{{t.desc }}</option>
+            </ng-container>
+    </select>
+   
+    <label for="userId">Developer</label>
+    <select id="user" [(ngModel)]="user">
+         <ng-container  *ngFor="let u of users">
+            <option *ngIf="u.role != 'admin'" value="{{u.userId}}">{{u.userName}}  {{ u.role}}</option>
+         </ng-container>
+    </select>
+    <div class="col-xs-12">
+        <button class="btn btn-success" type="submit" (click)="assignTask()">assign</button>
+        <button class="btn btn-danger" type="submit" (click)="cancel()">cancle</button>
+    </div>
+</div>
